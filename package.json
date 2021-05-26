@@ -1,28 +1,52 @@
 {
-  "name": "dyon-contracts",
+  "name": "@labrysio/dyon-contracts",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.ts",
   "scripts": {
     "test": " npx hardhat test",
-    "deploy": "npx hardhat --network localhost deploy --export export.json"
+    "deploy": "npx hardhat --network localhost deploy --export export.json",
+    "compile": "npx hardhat compile",
+    "clean": "npx hardhat clean"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "files": [
+    "lib/",
+    "typechain/"
+  ],
   "devDependencies": {
+    "@typechain/ethers-v5": "^7.0.0",
+    "@typechain/hardhat": "^2.0.1",
     "@types/chai": "^4.2.18",
     "@types/mocha": "^8.2.2",
     "@types/node": "^15.6.1",
     "chai": "^4.3.4",
     "chai-ethers": "0.0.1",
     "dotenv": "^10.0.0",
-    "ethers": "^5.2.0",
     "hardhat": "^2.3.0",
     "hardhat-deploy": "^0.7.9",
     "hardhat-deploy-ethers": "^0.3.0-beta.7",
     "mocha": "^8.4.0",
     "ts-node": "^10.0.0",
-    "typescript": "^4.2.4"
+    "typechain": "^5.0.0",
+    "typescript": "^4.2.4",
+    "ts-generator": "^0.1.1",
+    "hardhat-typechain": "^0.3.5",
+    "husky": "^4.3.8",
+    "prettier": "^2.2.1",
+    "pretty-quick": "^3.1.0"
+  },
+  "dependencies": {
+    "ethers": "^5.2.0"
+  },
+  "publishConfig": {
+    "@labrysio:registry": "https://gitlab.com/api/v4/projects/26925809/packages/npm/"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && npm test && echo $(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') > version.txt && git add . version.txt"
+    }
   }
 }

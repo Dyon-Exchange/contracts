@@ -1,17 +1,18 @@
-import {HardhatUserConfig} from 'hardhat/types';
-import 'hardhat-deploy';
-import 'hardhat-deploy-ethers';
+import { HardhatUserConfig } from "hardhat/types";
+import "hardhat-deploy";
+import "hardhat-deploy-ethers";
+import "@typechain/hardhat";
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: '0.7.6',
+    version: "0.7.6",
   },
   namedAccounts: {
     deployer: 0,
     tokenOwner: 1,
   },
   paths: {
-    sources: 'src',
+    sources: "src",
   },
 };
 export default config;
