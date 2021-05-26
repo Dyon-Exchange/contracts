@@ -1,0 +1,28 @@
+{
+  "name": "dyon-contracts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": " npx hardhat test",
+    "deploy": "npx hardhat --network localhost deploy --export export.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.2.18",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "^15.6.1",
+    "chai": "^4.3.4",
+    "chai-ethers": "0.0.1",
+    "dotenv": "^10.0.0",
+    "ethers": "^5.2.0",
+    "hardhat": "^2.3.0",
+    "hardhat-deploy": "^0.7.9",
+    "hardhat-deploy-ethers": "^0.3.0-beta.7",
+    "mocha": "^8.4.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.2.4"
+  }
+}
