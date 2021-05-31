@@ -11,6 +11,7 @@ test:
   script:
     - npm install -g typescript
     - npm install
+    - npm run compile
     - npm run test
 
 deploy:
@@ -20,4 +21,7 @@ deploy:
   script:
     - npm install -g typescript
     - npm install
-    - GITLAB_AUTH_TOKEN=$CI_JOB_TOKEN npm publish
+    - npm run compile
+    - npm run deploy-goerli
+    - echo $GOERLI_PRIVATE_KEY
+    - GITLAB_AUTH_TOKEN=$CI_JOB_TOKEN npm publish -f

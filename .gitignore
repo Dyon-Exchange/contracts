@@ -46,3 +46,5 @@ src/keys.json
 
 # ignore keys.json
 keys.json
+
+typechain
