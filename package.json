@@ -1,13 +1,15 @@
 {
   "name": "@labrysio/dyon-contracts",
   "version": "1.0.0",
-  "description": "",
+  "description": "Smart contracts for Dyon exchange",
   "main": "lib/index.ts",
   "scripts": {
     "test": " npx hardhat test",
     "deploy": "npx hardhat --network localhost deploy --export export.json",
-    "compile": "npx hardhat compile",
-    "clean": "npx hardhat clean"
+    "deploy-goerli": "npx hardhat --network goerli deploy --export ./lib/export.json",
+    "compile": "npx hardhat compile --force",
+    "clean": "npx hardhat clean",
+    "lint": "prettier --write 'src/*.sol' && prettier --list-different 'src/*.sol'"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +19,7 @@
     "typechain/"
   ],
   "devDependencies": {
+    "@openzeppelin/contracts": "^4.1.0",
     "@typechain/ethers-v5": "^7.0.0",
     "@typechain/hardhat": "^2.0.1",
     "@types/chai": "^4.2.18",
@@ -28,15 +31,17 @@
     "hardhat": "^2.3.0",
     "hardhat-deploy": "^0.7.9",
     "hardhat-deploy-ethers": "^0.3.0-beta.7",
-    "mocha": "^8.4.0",
-    "ts-node": "^10.0.0",
-    "typechain": "^5.0.0",
-    "typescript": "^4.2.4",
-    "ts-generator": "^0.1.1",
     "hardhat-typechain": "^0.3.5",
     "husky": "^4.3.8",
-    "prettier": "^2.2.1",
-    "pretty-quick": "^3.1.0"
+    "mocha": "^8.4.0",
+    "openzeppelin-solidity": "git+https://github.com/conorbros/openzeppelin-contracts.git",
+    "prettier": "^2.3.0",
+    "prettier-plugin-solidity": "^1.0.0-beta.11",
+    "pretty-quick": "^3.1.0",
+    "ts-generator": "^0.1.1",
+    "ts-node": "^10.0.0",
+    "typechain": "^5.0.0",
+    "typescript": "^4.2.4"
   },
   "dependencies": {
     "ethers": "^5.2.0"

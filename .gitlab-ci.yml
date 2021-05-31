@@ -12,6 +12,7 @@ test:
     - npm install -g typescript
     - npm install
     - npm run test
+    - npm run compile
 
 deploy:
   stage: deploy

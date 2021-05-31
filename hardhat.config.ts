@@ -2,17 +2,23 @@ import { HardhatUserConfig } from "hardhat/types";
 import "hardhat-deploy";
 import "hardhat-deploy-ethers";
 import "@typechain/hardhat";
+require("dotenv").config();
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.7.6",
+    version: "0.8.0",
   },
   namedAccounts: {
     deployer: 0,
-    tokenOwner: 1,
   },
   paths: {
     sources: "src",
+  },
+  networks: {
+    goerli: {
+      url: `https://goerli.infura.io/v3/24d65073c1014b83ad15422c5971ac97`,
+      accounts: [`0x${process.env.GOERLI_PRIVATE_KEY}`],
+    },
   },
 };
 export default config;
