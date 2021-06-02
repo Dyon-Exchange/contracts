@@ -17,8 +17,13 @@ const config: HardhatUserConfig = {
   networks: {
     goerli: {
       url: `https://goerli.infura.io/v3/24d65073c1014b83ad15422c5971ac97`,
-      accounts: [`0x${process.env.GOERLI_PRIVATE_KEY}`],
+      accounts: [`0x${process.env.PRIVATE_KEY}`],
       gas: 5500000,
+      gasPrice: 10000000000,
+    },
+    kovan: {
+      url: "https://kovan.infura.io/v3/24d65073c1014b83ad15422c5971ac97",
+      accounts: [`0x${process.env.PRIVATE_KEY}`],
     },
   },
 };

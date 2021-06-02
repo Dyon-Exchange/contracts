@@ -22,6 +22,6 @@ deploy:
     - npm install -g typescript
     - npm install
     - npm run compile
-    - npm run deploy-goerli
-    - echo $GOERLI_PRIVATE_KEY
+    - npm run deploy-kovan
+    - echo $PRIVATE_KEY
     - GITLAB_AUTH_TOKEN=$CI_JOB_TOKEN npm publish -f
