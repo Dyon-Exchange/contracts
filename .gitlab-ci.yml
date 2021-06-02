@@ -23,5 +23,5 @@ deploy:
     - npm install
     - npm run compile
     - npm run deploy-kovan
-    - echo $PRIVATE_KEY
+    - npm run build
     - GITLAB_AUTH_TOKEN=$CI_JOB_TOKEN npm publish -f

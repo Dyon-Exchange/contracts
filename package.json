@@ -2,7 +2,8 @@
   "name": "@labrysio/dyon-contracts",
   "version": "1.0.0",
   "description": "Smart contracts for Dyon exchange",
-  "main": "lib/index.ts",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
   "scripts": {
     "test": " npx hardhat test",
     "deploy": "npx hardhat --network localhost deploy --export export.json",
@@ -10,18 +11,17 @@
     "deploy-kovan": "npx hardhat --network kovan deploy --export ./lib/export.json",
     "compile": "npx hardhat compile --force",
     "clean": "npx hardhat clean",
-    "lint": "prettier --write 'src/*.sol' && prettier --list-different 'src/*.sol'"
+    "lint": "prettier --write 'src/*.sol' && prettier --list-different 'src/*.sol'",
+    "build": "tsc --project tsconfig.library.json && cp typechain/*.d.ts dist/typechain/"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "files": [
-    "lib/",
-    "typechain/"
+    "dist/"
   ],
   "devDependencies": {
     "@openzeppelin/contracts": "^4.1.0",
-    "@typechain/ethers-v5": "^7.0.0",
     "@typechain/hardhat": "^2.0.1",
     "@types/chai": "^4.2.18",
     "@types/mocha": "^8.2.2",
@@ -45,6 +45,8 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@typechain/ethers-v5": "^7.0.0",
     "ethers": "^5.2.0"
   },
   "publishConfig": {
