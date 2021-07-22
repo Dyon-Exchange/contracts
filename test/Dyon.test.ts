@@ -220,7 +220,7 @@ describe("Dyon contract", function () {
   });
 
   describe("Redeem/Burn Tokens", function () {
-    it("Should only allow tokens to be burned if user has entire supply", async function () {
+    it("Should only allow tokens to be burned if user has enough to burn that amount", async function () {
       const { Dyon, users, contractOwner } = await setup();
       const user0 = users[0];
       const userBalance = (i: number, x: number) =>
@@ -228,7 +228,7 @@ describe("Dyon contract", function () {
 
       await contractOwner.Dyon.mintToAddress(F[0], 100, user0.address);
       expect(await userBalance(0, 0)).equal(100);
-      await user0.Dyon.burn(user0.address, F[0]);
+      await user0.Dyon.burn(user0.address, F[0], 100);
       expect(await userBalance(0, 0)).equal(0);
 
       const user1 = users[1];
@@ -244,19 +244,33 @@ describe("Dyon contract", function () {
       expect(await userBalance(1, 1)).equal(100);
       expect(await Dyon.totalSupply(F[1])).equal(200);
 
-      await expect(user0.Dyon.burn(user0.address, F[1])).to.be.revertedWith(
-        "Dyon: Address must own all of token's supply"
+      await expect(
+        user0.Dyon.burn(user0.address, F[1], 200)
+      ).to.be.revertedWith(
+        "Dyon: Address must more or equal the amount of tokens being burned"
+      );
+    });
+
+    it("Should not be able to burn more tokens than exists", async function () {
+      const { users, contractOwner } = await setup();
+      const [user0] = users;
+
+      await contractOwner.Dyon.mintToAddress(F[0], 100, user0.address);
+      await expect(
+        user0.Dyon.burn(user0.address, F[1], 200)
+      ).to.be.revertedWith(
+        "Dyon: Address must more or equal the amount of tokens being burned"
       );
     });
 
     it("Should only allow holder of tokens to burn", async function () {
-      const { Dyon, users, contractOwner } = await setup();
+      const { users, contractOwner } = await setup();
       const [user0, user1] = users;
 
       await contractOwner.Dyon.mintToAddress(F[0], 100, user0.address);
-      await expect(user1.Dyon.burn(user0.address, F[0])).to.be.revertedWith(
-        "Dyon: caller is not owner"
-      );
+      await expect(
+        user1.Dyon.burn(user0.address, F[0], 100)
+      ).to.be.revertedWith("Dyon: caller is not owner");
     });
   });
 });
