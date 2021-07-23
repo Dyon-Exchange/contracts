@@ -7,11 +7,17 @@ import "openzeppelin-solidity/contracts/access/Ownable.sol";
 contract Dyon is ERC1155Supply, Ownable {
     constructor() ERC1155("https://game.example/api/item/{id}.json") {}
 
+    /**
+     * Mint tokens to contract owner
+     */
     function mint(uint256 id, uint64 supply) public onlyOwner {
         require(exists(id) == false, "Id must not already exist");
         _mint(owner(), id, supply, "");
     }
 
+    /**
+     *  Mint tokens to the supplied address
+     */
     function mintToAddress(
         uint256 id,
         uint64 supply,
@@ -21,17 +27,19 @@ contract Dyon is ERC1155Supply, Ownable {
         _mint(addr, id, supply, "");
     }
 
+    /*
+     * Burn tokens
+     */
     function burn(
-        address account,
+        address addr,
         uint256 id,
         uint256 amount
     ) external {
-        require(account == _msgSender(), "Dyon: caller is not owner of tokens");
-
+        require(addr == _msgSender(), "Dyon: caller is not owner of tokens");
         require(
-            amount <= balanceOf(account, id),
+            amount <= balanceOf(addr, id),
             "Dyon: Address must more or equal the amount of tokens being burned"
         );
-        _burn(account, id, amount);
+        _burn(addr, id, amount);
     }
 }
