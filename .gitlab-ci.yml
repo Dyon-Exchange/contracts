@@ -22,6 +22,6 @@ deploy:
     - npm install -g typescript
     - npm install
     - npm run compile
-    - npm run deploy-kovan
+    #    - npm run deploy-kovan
     - npm run build
     - GITLAB_AUTH_TOKEN=$CI_JOB_TOKEN npm publish -f

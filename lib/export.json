@@ -3,7 +3,7 @@
   "chainId": "42",
   "contracts": {
     "Dyon": {
-      "address": "0xDC57e3Dc17abF1E34e9A86C955C4871b2F2c4A24",
+      "address": "0x4F8e8C14da974C593e58dd9eDA37CD8BeBcA098C",
       "abi": [
         {
           "inputs": [],
@@ -199,12 +199,17 @@
           "inputs": [
             {
               "internalType": "address",
-              "name": "account",
+              "name": "addr",
               "type": "address"
             },
             {
               "internalType": "uint256",
               "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
               "type": "uint256"
             }
           ],
@@ -277,6 +282,11 @@
         {
           "inputs": [
             {
+              "internalType": "address",
+              "name": "addr",
+              "type": "address"
+            },
+            {
               "internalType": "uint256",
               "name": "id",
               "type": "uint256"
@@ -285,11 +295,6 @@
               "internalType": "uint64",
               "name": "supply",
               "type": "uint64"
-            },
-            {
-              "internalType": "address",
-              "name": "addr",
-              "type": "address"
             }
           ],
           "name": "mintToAddress",

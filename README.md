@@ -12,3 +12,17 @@ Then create `.npmrc` in the root directory of the project that you want to insta
 ```
 
 Then run `npm install @labrysio/dyon-contracts`
+
+## Development
+
+```bash
+npm run test # run the test suite
+
+npm run deploy # deploy to a local network
+
+npm run deploy-goerli # deploy to goerli
+
+npm run deploy-kovan # deploy to kovan
+```
+
+After the contracts are deployed and the code is pushed to the master branch, Gitlab CI will build a package and add to the package registry. If you are adding new code or doing a new deployment you will need to increment the version number or delete the existing package on the registry so the new one can be uploaded.

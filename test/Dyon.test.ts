@@ -68,7 +68,7 @@ describe("Dyon contract", function () {
     it("Mint tokens to user address", async function () {
       const { contractOwner, users } = await setup();
 
-      await contractOwner.Dyon.mintToAddress(F[0], 10, users[0].address);
+      await contractOwner.Dyon.mintToAddress(users[0].address, F[0], 10);
 
       const users0Balance = await users[0].Dyon.balanceOf(
         users[0].address,
@@ -98,8 +98,8 @@ describe("Dyon contract", function () {
       expect(await contractOwner.Dyon.totalSupply(F[1])).equal(15);
       expect(await contractOwner.Dyon.totalSupply(F[0])).equal(5);
 
-      await contractOwner.Dyon.mintToAddress(F[2], 20, users[0].address);
-      await contractOwner.Dyon.mintToAddress(N[0], 100, users[0].address);
+      await contractOwner.Dyon.mintToAddress(users[0].address, F[2], 20);
+      await contractOwner.Dyon.mintToAddress(users[0].address, N[0], 100);
       expect(await contractOwner.Dyon.balanceOf(users[0].address, F[2])).equal(
         20
       );
@@ -226,14 +226,14 @@ describe("Dyon contract", function () {
       const userBalance = (i: number, x: number) =>
         users[i].Dyon.balanceOf(users[i].address, F[x]);
 
-      await contractOwner.Dyon.mintToAddress(F[0], 100, user0.address);
+      await contractOwner.Dyon.mintToAddress(user0.address, F[0], 100);
       expect(await userBalance(0, 0)).equal(100);
       await user0.Dyon.burn(user0.address, F[0], 100);
       expect(await userBalance(0, 0)).equal(0);
 
       const user1 = users[1];
 
-      await contractOwner.Dyon.mintToAddress(F[1], 200, user0.address);
+      await contractOwner.Dyon.mintToAddress(user0.address, F[1], 200);
       await user0.Dyon.safeTransferFrom(
         user0.address,
         user1.address,
@@ -255,7 +255,7 @@ describe("Dyon contract", function () {
       const { users, contractOwner } = await setup();
       const [user0] = users;
 
-      await contractOwner.Dyon.mintToAddress(F[0], 100, user0.address);
+      await contractOwner.Dyon.mintToAddress(user0.address, F[0], 100);
       await expect(
         user0.Dyon.burn(user0.address, F[1], 200)
       ).to.be.revertedWith(
@@ -267,7 +267,7 @@ describe("Dyon contract", function () {
       const { users, contractOwner } = await setup();
       const [user0, user1] = users;
 
-      await contractOwner.Dyon.mintToAddress(F[0], 100, user0.address);
+      await contractOwner.Dyon.mintToAddress(user0.address, F[0], 100);
       await expect(
         user1.Dyon.burn(user0.address, F[0], 100)
       ).to.be.revertedWith("Dyon: caller is not owner");
