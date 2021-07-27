@@ -19,9 +19,9 @@ contract Dyon is ERC1155Supply, Ownable {
      *  Mint tokens to the supplied address
      */
     function mintToAddress(
+        address addr,
         uint256 id,
-        uint64 supply,
-        address addr
+        uint64 supply
     ) public onlyOwner {
         require(exists(id) == false, "Id must not already exist");
         _mint(addr, id, supply, "");
