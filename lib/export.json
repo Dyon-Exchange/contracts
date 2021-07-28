@@ -3,7 +3,7 @@
   "chainId": "42",
   "contracts": {
     "Dyon": {
-      "address": "0x4F8e8C14da974C593e58dd9eDA37CD8BeBcA098C",
+      "address": "0x45CDe95eEC0657b63222552DcE7F8AFfB2381fd8",
       "abi": [
         {
           "inputs": [],

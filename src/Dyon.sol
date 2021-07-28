@@ -28,7 +28,7 @@ contract Dyon is ERC1155Supply, Ownable {
     }
 
     /*
-     * Burn tokens
+     * Burn amount of tokens with the supplied id belonging to the supplied address
      */
     function burn(
         address addr,
